@@ -1,13 +1,25 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../UserContext/UserContext';
 
 
 const Login = () => {
+    const {signIn} = useContext(AuthContext);
     const handleSubmit = event=>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);        
+        console.log(email, password);
+        signIn(email, password)  
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+            form.reset()
+        })
+        .catch(error=>{
+            console.error(error);
+        })      
     }
     return (
 <div className='w-50 mx-auto bg-info text-white rounded'>

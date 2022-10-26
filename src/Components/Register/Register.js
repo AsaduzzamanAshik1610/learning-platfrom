@@ -2,8 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../UserContext/UserContext';
 
-
-
 const Register = () => {
     const {createUser} = useContext(AuthContext);
     const submitHandle = event=>{
@@ -15,9 +13,10 @@ const Register = () => {
         const password = form.password.value;
         console.log(name,photourl,email, password);
         createUser(email, password)
-        .the(result=> {
+        .then(result=> {
             const user = result.user;
             console.log(user);
+            form.reset();
         })
         .catch(error=>{
             console.error(error)
