@@ -1,15 +1,29 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../UserContext/UserContext';
 
-const submitHandle = event=>{
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const photourl = form.photourl.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(name,photourl,email, password);
-}
+
+
 const Register = () => {
+    const {createUser} = useContext(AuthContext);
+    const submitHandle = event=>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photourl = form.photourl.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name,photourl,email, password);
+        createUser(email, password)
+        .the(result=> {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error=>{
+            console.error(error)
+        })
+        
+    }
     return (  
  <div className='w-50 mx-auto bg-info p-10 text-white rounded'>
   <form onSubmit={submitHandle}>
