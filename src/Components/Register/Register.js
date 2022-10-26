@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Register = () => {
@@ -45,6 +46,9 @@ const Register = () => {
     {/* <label for="exampleInputPassword1" className="form-label">Password</label> */}
     <h4 className='text-center'>Your Password</h4>
     <input type="password" name='password' className="form-control w-50 mx-auto" placeholder='your password' id="exampleInputPassword1" required />
+    <div className='text-center'>
+    <Link to="/login" className="label-text-alt link link-hover text-danger">Already, have an account?</Link>
+    </div>
   </div>
   <div className='text-center'>
       <button type="Login" className="btn btn-primary mb-3">Register</button>

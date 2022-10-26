@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../UserContext/UserContext';
 
 const Header = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const {user, signInWithGoogle, logOut} = useContext(AuthContext);
     console.log(user);
     const logOutHandle = ()=>{
         logOut()
@@ -13,6 +13,15 @@ const Header = () => {
             console.error(error)
         })
     }
+    const handleGoogleSignIn =()=>{
+        signInWithGoogle()
+        .then(result=>{
+          const user = result.user;
+          console.log(user);
+        })   
+        .catch(error=> 
+         console.error(error))
+    }  
     
     return (
     <nav className="navbar navbar-expand-lg bg-dark">
@@ -37,7 +46,7 @@ const Header = () => {
         <li className="nav-item">
           <Link className="nav-link text-white" to="/register">Register</Link>
         </li>
-        { user?.email && <span>wlcome, {user.email}</span>}
+        { user?.email && <span className='text-white'>{user.email}</span>}
         {
             user?.uid? <button onClick={logOutHandle} className='bg-danger text-white rounded border-0'>Logout</button>
             :
@@ -45,7 +54,7 @@ const Header = () => {
           <Link className="nav-link text-white" to="/login">Login</Link>
       
         }
-         
+        <button onClick={handleGoogleSignIn} className='bg-info text-white ms-5 border-0 rounded'>Google</button>  
       </ul>
     </div>
   </div>
