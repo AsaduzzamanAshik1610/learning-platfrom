@@ -14,15 +14,23 @@ const Courses = () => {
     return (
       <div>
         <h4>All Courses :{courses.length} </h4>
-        <div>
-            {
+       <div>
+        <div className='row'>
+          <div className='col-lg-9'>
+          <div className='row'>
+          {
                 courses.map(sub=> <Course 
                 key={sub.id}
                 sub={sub}
                 ></Course>)
-                // courses.map(course=><p key={course.id}><Link to={course.id}>{course.name}</Link></p>)
             }
+          </div>
+          </div>
+          <div className='col-lg-3'>
+             
+          </div>
         </div>
+       </div>
       </div>
     );
 };

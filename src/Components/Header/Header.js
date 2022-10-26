@@ -39,14 +39,13 @@ const Header = () => {
         </li>
         { user?.email && <span>wlcome, {user.email}</span>}
         {
-            user?.email? <button onClick={logOutHandle} className='bg-danger text-white rounded border-0'>Logout</button>
+            user?.uid? <button onClick={logOutHandle} className='bg-danger text-white rounded border-0'>Logout</button>
             :
       
           <Link className="nav-link text-white" to="/login">Login</Link>
       
         }
-        
-        
+         
       </ul>
     </div>
   </div>
