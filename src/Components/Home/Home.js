@@ -1,12 +1,13 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import picture from '../images/javascript_logo.png';
-import img from '../images/python-hero.jpg';
-import pic from '../images/react-pic.png';
+import picture from '../images/pic.6.jpg';
+import img from '../images/img.1.jpg';
+import pic from '../images/react-pic.png'
 const Home = () => {
     return (
-        <Carousel>
-        <Carousel.Item interval={1000}>
+        <div className='mx-auto'>
+          <Carousel>
+        <Carousel.Item interval={300}>
           <img
             className="d-block w-100"
             src={picture}
@@ -17,7 +18,7 @@ const Home = () => {
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={500}>
+        <Carousel.Item interval={300}>
           <img
             className="d-block w-100"
             src={img}
@@ -42,6 +43,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+        </div>
     );
 };
 

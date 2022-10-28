@@ -1,13 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Course from '../Course/Course';
-
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);
+    console.log(courses)
     useEffect(()=>{
-        fetch('http://localhost:7000/regular-courses')
+        fetch('https://learning-server-side-rosy.vercel.app/regular-courses')
         .then(res=> res.json())
         .then(data=> setCourses(data))
     },[])
@@ -30,7 +31,8 @@ const Courses = () => {
               <div className='bg-info p-3 me-3 rounded'>
               <h2 className='text-danger'>courses</h2>
               {
-                courses.map(sb=> <p key={sb}><button className='border-0 bg-dark text-white p-1 rounded'>{sb.name}</button></p>)
+                courses.map(sb=> <p key={sb}><Link to={`/course/${sb._id}`} className='border-0 bg-dark text-white p-1 rounded'>{sb.name}</Link></p>)
+           
               }
               </div>
           </div>

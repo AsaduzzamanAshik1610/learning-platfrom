@@ -5,7 +5,7 @@ import { AuthContext } from '../UserContext/UserContext';
 
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext);
+    const {signIn, signInWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate()
     const handleSubmit = event=>{
         event.preventDefault();
@@ -18,12 +18,21 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset()
-            navigate('/courses')
+            navigate(form, {replace: true});
         })
         .catch(error=>{
             console.error(error);
         })      
     }
+    const handleGoogleSignIn =()=>{
+      signInWithGoogle()
+      .then(result=>{
+        const user = result.user;
+        console.log(user);
+      })   
+      .catch(error=> 
+       console.error(error))
+  }  
     return (
 <div className='w-50 mx-auto bg-info text-white rounded'>
 <form onSubmit={handleSubmit}>
@@ -36,7 +45,8 @@ const Login = () => {
     <input type="password" name='password' className="form-control w-50 mx-auto" placeholder='your password' id="exampleInputPassword1" required />
   </div>
   <div className='text-center'>
-   <button type="submit" className="btn btn-primary  mb-3">Login</button>
+   <button type="submit" className="bg-success text-white ms-5 border-0 rounded p-2 mb-2">Login</button>
+   <button onClick={handleGoogleSignIn} className='bg-danger text-white ms-5 border-0 p-2 mb-2'>GoogleSignIn</button>  
   </div>
 </form>
 </div>
