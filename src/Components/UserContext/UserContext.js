@@ -9,7 +9,8 @@ export const AuthContext = createContext()
 const auth = getAuth(app)
 
 const UserContext = ({children}) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
+    const [loader, setLoader] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const providerLogin = (provider)=>{
         return signInWithPopup(auth, provider); 
@@ -19,6 +20,7 @@ const UserContext = ({children}) => {
     }
 
     const signIn = (email, password)=>{
+        setLoader(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
     const signInWithGoogle = ()=>{
@@ -31,13 +33,14 @@ const UserContext = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             console.log('user inside state change', currentUser);
             setUser(currentUser)
+            setLoader(false)
         });
         return ()=>{
             unsubscribe();
         }
     }, [])
     
-    const AuthInfo = {user, providerLogin, signInWithGoogle, createUser, signIn, logOut};
+    const AuthInfo = {user,loader, providerLogin, signInWithGoogle, createUser, signIn, logOut};
     return (
         <div>
         <AuthContext.Provider value={AuthInfo}>
