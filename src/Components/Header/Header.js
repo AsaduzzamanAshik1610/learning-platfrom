@@ -5,7 +5,7 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { MdOutlineDarkMode,MdOutlineWbSunny } from "react-icons/md";
 import { AuthContext } from '../UserContext/UserContext';
-
+import './Header.css';
 const Header = () => {
   const [open, setopen] = useState(false);
     const {user, logOut} = useContext(AuthContext);
@@ -21,13 +21,15 @@ const Header = () => {
     return (
     <nav className="navbar navbar-expand-lg bg-primary">
      <div className="container-fluid">
-     <h4 className='me-3 text-white'>Talk Digital</h4>
+     <h4 className='me-3 text-white'>
+      <img className='logo' src={"https://as2.ftcdn.net/v2/jpg/02/19/98/93/500_F_219989372_K1pBzmbiGfoMd6X5JJd5SYOVIBzSUN8f.jpg"} alt="" />
+     <span> Talk Digital</span></h4>
     <button className='bg-dark text-white border-0 py-1 rounded'><Link className="navbar-brand text-white" to="/">Home</Link></button>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
+      <ul className="navbar-nav float-end">
         <li className="nav-item">
          <button className='bg-success ms-2 border-0 rounded'><Link className="nav-link text-white active" aria-current="page" to="/courses">Courses</Link></button>
         </li>
@@ -35,7 +37,7 @@ const Header = () => {
           <Link className="nav-link text-white" to="/faq">FAQ</Link>
         </li>
         <li className="nav-item">
-        <Link className="nav-link text-dark" to="/blog">Blog</Link>
+        <Link className="nav-link text-white" to="/blog">Blog</Link>
         </li>
         
         <li className="nav-item">
